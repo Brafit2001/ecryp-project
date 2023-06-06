@@ -3,10 +3,6 @@ from math import sqrt
 import random
 # required for randrange
 
-
-# just to use the well known keyword rand() from C++
-
-
 def gcd(a, b):
     if b == 0:
         return a

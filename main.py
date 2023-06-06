@@ -2,28 +2,24 @@ import admin
 import os
 import time
 
-ANSI_RESET = "\u001B[0m";
-ANSI_BLACK = "\u001B[30m";
-ANSI_RED = "\u001B[31m";
-ANSI_GREEN = "\u001B[32m";
-ANSI_YELLOW = "\u001B[33m";
-ANSI_BLUE = "\u001B[34m";
-ANSI_PURPLE = "\u001B[35m";
-ANSI_CYAN = "\u001B[36m";
-ANSI_WHITE = "\u001B[37m";
+ANSI_RESET = "\u001B[0m"
+ANSI_BLACK = "\u001B[30m"
+ANSI_RED = "\u001B[31m"
+ANSI_GREEN = "\u001B[32m"
+ANSI_YELLOW = "\u001B[33m"
+ANSI_BLUE = "\u001B[34m"
+ANSI_PURPLE = "\u001B[35m"
+ANSI_CYAN = "\u001B[36m"
+ANSI_WHITE = "\u001B[37m"
 TAB = '\t'*7
 TAB2 = '\t'*6
 admin = admin.Admin()
 os.system('cls')
 
 
-
-
 while True:
     os.system("cls")
-    #Welcome menu - Choose between actions
-    "Bucle que permite la ejecucion hasta que el usuario indique lo contrario"
-    #admin.recover_json_information("./JSONS/app_users.json)
+    "Loop that allows execution until the user indicates otherwise."
     print("\n" + ANSI_PURPLE +
           TAB2 + "     ____                  ____                              _   ____     \n" +
           TAB2 + "     |  _ \    __ _   ___  / ___|  __      __   ___    _ __  | | |  _ \   \n" +
@@ -41,9 +37,6 @@ while True:
     # ---------------------- Login functionality -----------------------------
     if action1 == "1":
         os.system('cls')
-        #Una vez chekeado que es un usuario registrado
-        #Login Menu - Introduce your user information:
-        #pasamos a la interaccion de en el menu principal
         print("\n\n"+ TAB + ANSI_PURPLE+"LOGIN MENU - INTRODUCE YOUR USER INFORMATION\n"+ANSI_RESET +
               TAB + ANSI_YELLOW+"_____________________________________________\n" + ANSI_RESET)
         app_user = input(TAB + ANSI_PURPLE + "Username:    " + ANSI_RESET).upper()
@@ -51,6 +44,7 @@ while True:
         log_in_ck = admin.log_in_check_user(app_user, app_pass)
         flag = log_in_ck[0]
         user_acc = log_in_ck[1]
+        err = log_in_ck[2]
 
         if flag:
             while True:
@@ -72,10 +66,10 @@ while True:
 
                 if action == "1":
                     os.system('cls')
-                    print("\n\n\n" + TAB + "                  CONTRASEÑAS GUARDADAS")
+                    print("\n\n\n" + TAB + "                  SAVED PASSWORDS")
                     print(TAB + "__________________________________________________________")
                     admin.show(app_user, 'external')
-                    input(TAB + ANSI_RED+"Presiona cualquier tecla para continuar: "+ANSI_RESET)
+                    input(TAB + ANSI_RED+"Press any key to continue: "+ANSI_RESET)
 
                 if action == "2":
                     os.system("cls")
@@ -85,12 +79,14 @@ while True:
                     acc_user = input(TAB + "Introduce the user of the account: ")
                     acc_pass = input(TAB + "Introduce the password of the account: "+ANSI_RESET)
                     admin.add_external_account(acc_site, app_user, acc_user, acc_pass)
-                    input(TAB + ANSI_RED + "Presiona cualquier tecla para continuar: " + ANSI_RESET)
+                    input(TAB + ANSI_RED + "Press any key to continue: " + ANSI_RESET)
+                    print('\n')
+                    print('Password saved correctly')
 
 
                 if action == "3":
                     os.system("cls")
-                    print("\n\n\n" + TAB + "                  CONTRASEÑAS GUARDADAS")
+                    print("\n\n\n" + TAB + "                  SAVED PASSWORDS")
                     print(TAB + "__________________________________________________________")
                     admin.show(app_user, 'external')
                     site = input(TAB + ANSI_YELLOW+"Introduce the site/application: ").upper()
@@ -130,11 +126,13 @@ while True:
                         site_to_share = input(TAB+
                             "Introduce the site of the account you want to share: " + ANSI_RESET).upper()
                     admin.share_password(app_user, receiving_user, site_to_share)
-                    input(TAB + ANSI_RED+"Presiona cualquier tecla para continuar: "+ANSI_RESET)
+                    input(TAB + ANSI_RED+"Press any key to continue: "+ANSI_RESET)
+                    print('\n')
+                    print('Password shared correctly')
 
                 if action == "5":
                     os.system("cls")
-                    print("\n\n\n" + TAB + "                  CONTRASEÑAS GUARDADAS")
+                    print("\n\n\n" + TAB + "                  SAVED PASSWORDS")
                     print(TAB + "__________________________________________________________")
                     admin.show(app_user, 'external')
                     print(TAB + ANSI_PURPLE+"Delete a password - Introduce the required data"+ANSI_RESET)
@@ -143,31 +141,27 @@ while True:
 
                 if action == "6":
                     os.system("cls")
-                    print("\n\n\n" + TAB + "                  CONTRASEÑAS QUE COMPARTO")
+                    print("\n\n\n" + TAB + "                  PASSWORDS I SHARED")
                     print(TAB + "__________________________________________________________")
                     admin.show(app_user, 'shared_woth')
                     print(TAB + "__________________________________________________________")
-                    input(TAB + ANSI_RED + "Presiona cualquier tecla para continuar: " + ANSI_RESET)
+                    input(TAB + ANSI_RED + "Press any key to continue: " + ANSI_RESET)
 
                 if action == "7":
                     os.system("cls")
-                    print("\n\n\n" + TAB + "                  CONTRASEÑAS QUE ME COMPARTEN")
+                    print("\n\n\n" + TAB + "                  PASSWORDS SHARED WITH ME")
                     print(TAB + "__________________________________________________________")
                     admin.show(app_user, 'shared_wme')
                     print(TAB + "__________________________________________________________")
-                    input(TAB + ANSI_RED + "Presiona cualquier tecla para continuar: " + ANSI_RESET)
+                    input(TAB + ANSI_RED + "Press any key to continue: " + ANSI_RESET)
 
                 if action == "8":
                     os.system('cls')
 
                     break
-
-                '''if int(action) not in (1,7):
-                    print("Wrong answer, try again!")
-                    time.sleep(2)'''
         else:
-            os.system("cls")
-            print("Invalid credentials, please try again")
+            print('\n')
+            print(err)
             time.sleep(1)
 
     # ---------------------- Sing up functionality -----------------------------
@@ -178,21 +172,27 @@ while True:
         app_user = input(TAB + ANSI_PURPLE + "Username:    " + ANSI_RESET).upper()
         app_pass = input(TAB + ANSI_PURPLE + "Password:    " + ANSI_RESET)
         admin.add_user(app_user, app_pass)
+        print('\n')
+        print('User successfully registered')
 
     # ---------------------- Close functionality -----------------------------
     elif action1 == "3":
-        #admin.save_users_information()
-        os.system("cls")
+        print('\n')
         print("Thanks for using PassSworld!!")
 
         break
 
     # ---------------------- Input error functionality -----------------------------
     elif action1 == "4":
-        #PARA RESETAR LOS JSON, HACE FALTA CERRAR EL PROGRAMA UNA VEZ SELECCIONADA ESTA OPCION
         admin.save_json_information({}, "./JSONS/app_users.json")
         admin.save_json_information({}, "./JSONS/users_external_accounts.json")
         admin.save_json_information({}, "./JSONS/shared_accounts.json")
+        path = './RSA_keys'
+        for f in os.listdir(path):
+            os.remove(os.path.join(path, f))
+        print('\n')
+        print("Elimination successfully completed")
+        break
 
     else:
         print("Error: action not possible")
